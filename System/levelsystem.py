@@ -25,7 +25,7 @@ if config['Database_Type'].lower() == 'mongodb':
     COLLECTION = os.getenv("COLLECTION")
     DB_NAME = os.getenv("DATABASE_NAME")
     cluster = MongoClient(MONGODB_URI)
-    levelling = cluster[COLLECTION][DB_NAME]
+    levelling = cluster[DB_NAME][COLLECTION]
 
 
 class levelsys(commands.Cog):
@@ -52,8 +52,11 @@ class levelsys(commands.Cog):
             channels = await KumosLab.Database.get.talkchannels(guild=ctx.guild)
             channel_Array = []
             channel_List = []
-            for channel in channels:
-                channel_Array.append(channel)
+            
+            if channels is not None:
+                for channel in channels:
+                    channel_Array.append(channel)
+
             if channel_Array is None:
                 pass
             else:

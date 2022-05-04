@@ -16,7 +16,7 @@ if config['Database_Type'].lower() == 'mongodb':
     COLLECTION = os.getenv("COLLECTION")
     DB_NAME = os.getenv("DATABASE_NAME")
     cluster = MongoClient(MONGODB_URI)
-    levelling = cluster[COLLECTION][DB_NAME]
+    levelling = cluster[DB_NAME][COLLECTION]
 
 async def xp(user: discord.Member = None, guild: discord.Guild = None):
     if user is None:

@@ -19,7 +19,7 @@ if config['Database_Type'].lower() == 'mongodb':
     COLLECTION = os.getenv("COLLECTION")
     DB_NAME = os.getenv("DATABASE_NAME")
     cluster = MongoClient(MONGODB_URI)
-    levelling = cluster[COLLECTION][DB_NAME]
+    levelling = cluster[DB_NAME][COLLECTION]
 
 async def leaderboard(self=None, ctx=None, guild=None, leader_type=None):
     if self is None:
