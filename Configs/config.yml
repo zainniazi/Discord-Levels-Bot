@@ -34,7 +34,7 @@ Default_Border: "https://coolbackgrounds.io/images/backgrounds/black/pure-black-
 help_command: True
 
 # Notifies the bot owner when a new version is released (Bot_Owner must be filled)
-update_notify: True
+update_notify: False
 
 # If XP Chance is enabled or disabled (true = enabled, false = disabled)
 XP_Chance: True
