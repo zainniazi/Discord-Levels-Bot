@@ -83,7 +83,7 @@ rank_alias: ['r', 'level', 'l', 'stats', 'xp', 'progress']
 level_up_ping: True
 
 # The background image for the level up card
-level_up_background: "https://wallpaperaccess.com/full/4956346.jpg"
+level_up_background: "https://ri-dashboard.s3.ap-southeast-1.amazonaws.com/Level-Up-Background.jpg"
 
 # The amount of blur on the background image for the level up card
 level_up_blur: 10
