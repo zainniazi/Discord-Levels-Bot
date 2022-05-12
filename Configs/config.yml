@@ -22,13 +22,13 @@ loader_type: "message"
 
 # The default background for each user when they get added to the database || Please do not leave this as nothing!! If you get errors, it means the url is invalid.
 # I recommend using imgur to get the link for your background.
-Default_Background: "https://coolbackgrounds.io/images/backgrounds/black/pure-black-background-f82588d3.jpg"
+Default_Background: "https://oceanclash.s3.us-east-2.amazonaws.com/level-bot/assets/rank-card-grey.jpg"
 
 # Default XP Colour for each user when they get added to the database
-Default_XP_Colour: "#ffffff"
+Default_XP_Colour: "#00c6fd"
 
 # The default border for the users profile picture on the rank card **ONLY IF THE RANK GENERATOR IS CUSTOM!!**
-Default_Border: "https://coolbackgrounds.io/images/backgrounds/black/pure-black-background-f82588d3.jpg"
+Default_Border: "https://oceanclash.s3.us-east-2.amazonaws.com/level-bot/assets/border-white.jpg"
 
 # Enables / Disables the help command (true = enabled, false = disabled)
 help_command: True
@@ -83,7 +83,7 @@ rank_alias: ['r', 'level', 'l', 'stats', 'xp', 'progress']
 level_up_ping: True
 
 # The background image for the level up card
-level_up_background: "https://ri-dashboard.s3.ap-southeast-1.amazonaws.com/Level-Up-Background.jpg"
+level_up_background: "https://oceanclash.s3.us-east-2.amazonaws.com/level-bot/assets/level-up-background.jpg"
 
 # The amount of blur on the background image for the level up card
 level_up_blur: 10
