@@ -1,5 +1,3 @@
-from cgitb import text
-from turtle import right
 import discord
 from discord import File
 from easy_pil import Editor, load_image_async, Font, load_image, Text
