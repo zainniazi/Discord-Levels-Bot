@@ -37,13 +37,33 @@ async def levelUp(user: discord.Member = None, guild: discord.Guild = None):
         user_xp = await KumosLab.Database.get.xp(user=user, guild=guild)
         lvl = 0
 
-        while True:
-            if user_xp < ((config['xp_per_level'] / 2 * (lvl ** 2)) + (config['xp_per_level'] / 2 * lvl)):
-                break
-            lvl += 1
-        user_xp -= ((config['xp_per_level'] / 2 * ((lvl - 1) ** 2)) + (config['xp_per_level'] / 2 * (lvl - 1)))
+        if config['xp_per_level_type'] == 'default':
+            while True:
+                if user_xp < ((config['xp_per_level'] / 2 * (lvl ** 2)) + (config['xp_per_level'] / 2 * lvl)):
+                    break
+                lvl += 1
+            user_xp -= ((config['xp_per_level'] / 2 * ((lvl - 1) ** 2)) + (config['xp_per_level'] / 2 * (lvl - 1)))
+        else:
+            lvl = 1
+            previous_total_xp_required = 0
+            total_xp_required = 0
+            while True:
+                previous_total_xp_required = total_xp_required
+                total_xp_required += (5 * ((lvl - 1) ** 2) + (50 * (lvl - 1)) + 100)
+                if user_xp < total_xp_required:
+                    break
+                lvl += 1
+
         if await KumosLab.Database.get.level(user=user, guild=guild) != lvl:
             await KumosLab.Database.set.level(user=user, guild=guild, amount=lvl)
+
+            next_level_xp = 0
+            if config['xp_per_level_type'] == 'default':
+                next_level_xp = int(config['xp_per_level'] * 2 * ((1 / 2) * lvl))
+            else:
+                user_xp = user_xp - previous_total_xp_required
+                next_level_xp = (5 * (lvl ** 2) + (50 * lvl) + 100)
+
 
             background_image = load_image(config['level_up_background'])
             background = Editor(background_image).resize((900, 270)).blur(amount=config['level_up_blur'])
@@ -70,7 +90,7 @@ async def levelUp(user: discord.Member = None, guild: discord.Guild = None):
                 (600, 130), f"LEVEL {lvl:,}", font=poppins_mediam, color="white", align="center"
             )
             background.text(
-                (600, 170), f"{translate(user_xp)}/{translate(int(config['xp_per_level'] * 2 * ((1 / 2) * lvl)))} XP",
+                (600, 170), f"{translate(user_xp)}/{translate(next_level_xp)} XP",
                 font=poppins_regular, color="white", align="center"
             )
 

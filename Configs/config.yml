@@ -64,6 +64,9 @@ xp_ranrange_max: 50
 # How much XP is required per level (e.g - xp_per_level: 10 = Level 1 would require 10 xp to level up. Level 2 would require 20 xp to level up)
 xp_per_level: 100
 
+# Level based XP type -- default, custom
+xp_per_level_type: 'custom'
+
 
 # ======================================================================================
 #                                  LEADERBOARD
