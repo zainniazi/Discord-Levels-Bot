@@ -45,11 +45,12 @@ async def generate(user: discord.Member = None, guild: discord.Guild = None):
             next_level_xp = int(config['xp_per_level'] * 2 * ((1 / 2) * level))
         
         else:
+            level = 0
             previous_total_xp_required = 0
             total_xp_required = 0
             while True:
                 previous_total_xp_required = total_xp_required
-                total_xp_required += (5 * ((level - 1) ** 2) + (50 * (level - 1)) + 100)
+                total_xp_required += (5 * (level ** 2) + (50 * level) + 100)
                 if xp < total_xp_required:
                     break
                 level += 1

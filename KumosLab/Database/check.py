@@ -44,12 +44,11 @@ async def levelUp(user: discord.Member = None, guild: discord.Guild = None):
                 lvl += 1
             user_xp -= ((config['xp_per_level'] / 2 * ((lvl - 1) ** 2)) + (config['xp_per_level'] / 2 * (lvl - 1)))
         else:
-            lvl = 1
             previous_total_xp_required = 0
             total_xp_required = 0
             while True:
                 previous_total_xp_required = total_xp_required
-                total_xp_required += (5 * ((lvl - 1) ** 2) + (50 * (lvl - 1)) + 100)
+                total_xp_required += (5 * (lvl ** 2) + (50 * lvl) + 100)
                 if user_xp < total_xp_required:
                     break
                 lvl += 1
@@ -70,9 +69,9 @@ async def levelUp(user: discord.Member = None, guild: discord.Guild = None):
             profile_image = load_image(str(user.avatar_url))
             profile = Editor(profile_image).resize((200, 200)).circle_image()
 
-            poppins_big = Font.poppins(variant="bold", size=50)
-            poppins_mediam = Font.poppins(variant="bold", size=40)
-            poppins_regular = Font.poppins(variant="regular", size=30)
+            poppins_big = Font.montserrat(variant="bold", size=50)
+            poppins_mediam = Font.montserrat(variant="bold", size=40)
+            poppins_regular = Font.montserrat(variant="regular", size=30)
 
             card_left_shape = [(0, 0), (0, 270), (330, 270), (260, 0)]
 
@@ -82,15 +81,15 @@ async def levelUp(user: discord.Member = None, guild: discord.Guild = None):
             background.paste(border, (40, 30))
             background.paste(profile, (45, 35))
 
-            background.text((600, 30), "LEVEL UP!", font=poppins_big, color="white", align="center")
+            background.text((600, 45), "LEVEL UP!", font=poppins_big, color="white", align="center")
             background.text(
-                (600, 80), str(user), font=poppins_regular, color="white", align="center"
+                (600, 95), str(user), font=poppins_regular, color="white", align="center"
             )
             background.text(
-                (600, 130), f"LEVEL {lvl:,}", font=poppins_mediam, color="white", align="center"
+                (600, 155), f"LEVEL {lvl:,}", font=poppins_mediam, color="white", align="center"
             )
             background.text(
-                (600, 170), f"{translate(user_xp)}/{translate(next_level_xp)} XP",
+                (600, 195), f"{translate(user_xp)}/{translate(next_level_xp)} XP",
                 font=poppins_regular, color="white", align="center"
             )
 
@@ -105,7 +104,7 @@ async def levelUp(user: discord.Member = None, guild: discord.Guild = None):
             if channel is None:
                 return
             if config['level_up_ping'] is True:
-                await channel.send(f"{user.mention},")
+                await channel.send(f"{user.mention}")
 
             level_roles = np.asarray(await KumosLab.Database.get.roles(guild=guild))
             level_roles_num = np.asarray(await KumosLab.Database.get.roleLevel(guild=guild))
