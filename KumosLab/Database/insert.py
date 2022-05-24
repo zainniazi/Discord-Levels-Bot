@@ -19,7 +19,7 @@ async def userField(member: discord.Member, guild: discord.Guild):
     db_type = config["Database_Type"]
     if db_type.lower() == "mongodb":
         levelling.insert_one(
-            {"guild_id": guild.id, "user_id": member.id, "name": str(member), "level": 1, "xp": 0,
+            {"guild_id": guild.id, "user_id": member.id, "name": str(member), "level": 0, "xp": 0,
              "background": config['Default_Background'], "xp_colour": config['Default_XP_Colour'], "blur": 0,
              "border": config['Default_Border']})
     elif db_type.lower() == "local":
